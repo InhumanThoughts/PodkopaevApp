@@ -21,6 +21,9 @@ namespace PodkopaevApp.Pages
     /// </summary>
     public partial class StaffAuth : Page
     {
+        /// <summary>
+        /// AAAAAAAA
+        /// </summary>
         public StaffAuth()
         {
             InitializeComponent();
@@ -42,7 +45,7 @@ namespace PodkopaevApp.Pages
             if (loginTB.Text == "логин")
                 loginTB.Text = "";
         }
-
+        
         private void passTB_GotFocus(object sender, RoutedEventArgs e)
         {
             if (passTB.Text == "пароль")
