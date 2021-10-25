@@ -1,0 +1,27 @@
+﻿<Page x:Class="PodkopaevApp.Pages.StaffAuth"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PodkopaevApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="800"
+      Title="StaffAuth">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Fill="#00A4C8" />
+        <TextBlock x:Name="mainTB" Text="Введите свои данные" Style="{DynamicResource TextBlockStyle}"/>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <TextBox x:Name="loginTB" Text="логин" GotFocus="loginTB_GotFocus" LostFocus="loginTB_LostFocus" Style="{DynamicResource TextBoxStyle}"/>
+            <TextBox x:Name="passTB" Text="пароль" GotFocus="passTB_GotFocus" LostFocus="passTB_LostFocus" Style="{DynamicResource TextBoxStyle}"/>
+            <Button x:Name="enterBtn" Click="enterBtn_Click" Content="вход" Style="{DynamicResource ButtonStyle}"/>
+        </StackPanel>
+
+        <Button Grid.Row="1" x:Name="backBtn" Click="backBtn_Click" Content="назад" Style="{DynamicResource ButtonStyleBack}"/>
+    </Grid>
+</Page>
