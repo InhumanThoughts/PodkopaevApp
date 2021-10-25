@@ -13,10 +13,10 @@ namespace PodkopaevApp.Helper
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PodkopaevPolyclinicEntities : DbContext
+    public partial class PodkopaevPolyclinicEntities1 : DbContext
     {
-        public PodkopaevPolyclinicEntities()
-            : base("name=PodkopaevPolyclinicEntities")
+        public PodkopaevPolyclinicEntities1()
+            : base("name=PodkopaevPolyclinicEntities1")
         {
         }
     

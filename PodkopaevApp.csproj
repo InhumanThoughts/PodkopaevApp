@@ -109,11 +109,17 @@
     <Compile Include="Helper\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DoctorListPage.xaml.cs">
+      <DependentUpon>DoctorListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PatientAuth.xaml.cs">
       <DependentUpon>PatientAuth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PatientListPage.xaml.cs">
+      <DependentUpon>PatientListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StaffAuth.xaml.cs">
       <DependentUpon>StaffAuth.xaml</DependentUpon>
@@ -133,11 +139,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\DoctorListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PatientAuth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PatientListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

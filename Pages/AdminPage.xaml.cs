@@ -12,17 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PodkopaevApp.Helper;
 
 namespace PodkopaevApp.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для StaffPage.xaml
-    /// </summary>
+
     public partial class AdminPage : Page
     {
-        public AdminPage()
+        public AdminPage(User user)
         {
             InitializeComponent();
+            staffName.Text = user.FirstName;
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
@@ -32,12 +32,12 @@ namespace PodkopaevApp.Pages
 
         private void doctorsBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            staffFrame.Navigate(new DoctorListPage());
         }
 
         private void patientsBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            staffFrame.Navigate(new PatientListPage());
         }
     }
 }

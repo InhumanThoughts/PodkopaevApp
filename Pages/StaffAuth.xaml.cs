@@ -24,6 +24,9 @@ namespace PodkopaevApp.Pages
         /// <summary>
         /// AAAAAAAA
         /// </summary>
+
+        PodkopaevPolyclinicEntities1 DB = new PodkopaevPolyclinicEntities1();
+        
         public StaffAuth()
         {
             InitializeComponent();
@@ -31,8 +34,20 @@ namespace PodkopaevApp.Pages
 
         private void enterBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            NavigationService.Navigate(new AdminPage());
+            User user = DB.User.Where(u => u.login == loginTB.Text && u.password == passTB.Text).FirstOrDefault();
+            if (user == null)
+                return;
+
+            switch(user.RoleId)
+            {
+                case 1:
+                    NavigationService.Navigate(new AdminPage(user));
+                    break;
+                default:
+                    MessageBox.Show("Эта роль не поддерживается");
+                    break;
+            }
+
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
