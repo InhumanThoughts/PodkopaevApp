@@ -22,13 +22,13 @@ namespace PodkopaevApp.Pages
     /// </summary>
     public partial class PatientListPage : Page
     {
-        ObservableCollection<User> list = new ObservableCollection<User>();
+        ObservableCollection<Patient> list = new ObservableCollection<Patient>();
         PodkopaevPolyclinicEntities1 DB = new PodkopaevPolyclinicEntities1();
 
         public PatientListPage()
         {
             InitializeComponent();
-            list = new ObservableCollection<User>(DB.User.Where(e => e.RoleId == 3).ToList());
+            list = new ObservableCollection<Patient>(DB.Patient.ToList());
             patientsLV.ItemsSource = list;
         }
     }

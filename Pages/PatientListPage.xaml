@@ -14,7 +14,11 @@
                 <GridView >
                     <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}" />
                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}" />
-                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}" />
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronimic}" />
+                    <GridViewColumn Header="Пол" DisplayMemberBinding="{Binding Gender}" />
+                    <GridViewColumn Header="День рождения" DisplayMemberBinding="{Binding BirthDay}" />
+                    <GridViewColumn Header="Мед. карта" DisplayMemberBinding="{Binding MedicalCard}" />
+                    <GridViewColumn Header="Полис" DisplayMemberBinding="{Binding Polis}" />
                 </GridView>
             </ListView.View>
         </ListView>

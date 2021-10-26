@@ -15,6 +15,9 @@
                     <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}" />
                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}" />
                     <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}" />
+                    <GridViewColumn Header="Пол" DisplayMemberBinding="{Binding Gender}" />
+                    <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding BirthDay}" />
+                    <GridViewColumn Header="Дата трудоустройства" DisplayMemberBinding="{Binding EmploymentDate}" />
                     <GridViewColumn Header="Кабинет" DisplayMemberBinding="{Binding CabinetNumber}" />
                 </GridView>
             </ListView.View>
