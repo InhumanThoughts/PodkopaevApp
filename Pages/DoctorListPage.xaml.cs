@@ -28,7 +28,7 @@ namespace PodkopaevApp.Pages
         public DoctorListPage()
         {
             InitializeComponent();
-            list = new ObservableCollection<User>(DB.User.Where(e => e.RoleId == 2).ToList());
+            list = new ObservableCollection<User>(DB.Users.Where(e => e.RoleId == 2).ToList());
             doctorsLV.ItemsSource = list;
         }
     }

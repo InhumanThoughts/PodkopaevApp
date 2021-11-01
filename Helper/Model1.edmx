@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище PodkopaevPolyclinicModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PodkopaevPolyclinicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="DiseaseHistory">
           <Key>
             <PropertyRef Name="Id" />
@@ -210,7 +210,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище PodkopaevPolyclinicModelContainer">
+        <EntityContainer Name="PodkopaevPolyclinicModelStoreContainer">
           <EntitySet Name="DiseaseHistory" EntityType="Self.DiseaseHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MedicalCard" EntityType="Self.MedicalCard" Schema="dbo" store:Type="Tables" />
@@ -272,7 +272,7 @@
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="DiagnosisName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MedicalCard" Relationship="Self.FK_MedicalCard_DiseaseHistory" FromRole="DiseaseHistory" ToRole="MedicalCard" />
+          <NavigationProperty Name="MedicalCards" Relationship="Self.FK_MedicalCard_DiseaseHistory" FromRole="DiseaseHistory" ToRole="MedicalCard" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -280,8 +280,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_Gender" FromRole="Gender" ToRole="Patient" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Gender" FromRole="Gender" ToRole="User" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_Patient_Gender" FromRole="Gender" ToRole="Patient" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Gender" FromRole="Gender" ToRole="User" />
         </EntityType>
         <EntityType Name="MedicalCard">
           <Key>
@@ -292,7 +292,7 @@
           <Property Name="RecipeListId" Type="Int32" />
           <NavigationProperty Name="DiseaseHistory" Relationship="Self.FK_MedicalCard_DiseaseHistory" FromRole="MedicalCard" ToRole="DiseaseHistory" />
           <NavigationProperty Name="RecipeList" Relationship="Self.FK_MedicalCard_RecipeList" FromRole="MedicalCard" ToRole="RecipeList" />
-          <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_MedicalCard" FromRole="MedicalCard" ToRole="Patient" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_Patient_MedicalCard" FromRole="MedicalCard" ToRole="Patient" />
         </EntityType>
         <EntityType Name="Patient">
           <Key>
@@ -308,17 +308,17 @@
           <Property Name="BirthDay" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Patient_Gender" FromRole="Patient" ToRole="Gender" />
           <NavigationProperty Name="MedicalCard" Relationship="Self.FK_Patient_MedicalCard" FromRole="Patient" ToRole="MedicalCard" />
-          <NavigationProperty Name="Polis" Relationship="Self.FK_Patient_Polis" FromRole="Patient" ToRole="Polis" />
-          <NavigationProperty Name="RecordList" Relationship="Self.FK_RecordList_Patient" FromRole="Patient" ToRole="RecordList" />
+          <NavigationProperty Name="Poli" Relationship="Self.FK_Patient_Polis" FromRole="Patient" ToRole="Polis" />
+          <NavigationProperty Name="RecordLists" Relationship="Self.FK_RecordList_Patient" FromRole="Patient" ToRole="RecordList" />
         </EntityType>
-        <EntityType Name="Polis">
+        <EntityType Name="Poli">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="InsuranceCompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PolisNumber" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_Polis" FromRole="Polis" ToRole="Patient" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_Patient_Polis" FromRole="Polis" ToRole="Patient" />
         </EntityType>
         <EntityType Name="RecipeList">
           <Key>
@@ -328,7 +328,7 @@
           <Property Name="PreparationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="MedicalCard" Relationship="Self.FK_MedicalCard_RecipeList" FromRole="RecipeList" ToRole="MedicalCard" />
+          <NavigationProperty Name="MedicalCards" Relationship="Self.FK_MedicalCard_RecipeList" FromRole="RecipeList" ToRole="MedicalCard" />
         </EntityType>
         <EntityType Name="RecordList">
           <Key>
@@ -347,9 +347,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -375,7 +375,7 @@
           <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
-          <NavigationProperty Name="RecordList" Relationship="Self.FK_RecordList_User" FromRole="User" ToRole="RecordList" />
+          <NavigationProperty Name="RecordLists" Relationship="Self.FK_RecordList_User" FromRole="User" ToRole="RecordList" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_MedicalCard_DiseaseHistory">
@@ -439,7 +439,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Patient_Polis">
-          <End Role="Polis" Type="Self.Polis" Multiplicity="0..1" />
+          <End Role="Polis" Type="Self.Poli" Multiplicity="0..1" />
           <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Polis">
@@ -487,51 +487,51 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="PodkopaevPolyclinicEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="DiseaseHistory" EntityType="Self.DiseaseHistory" />
-          <EntitySet Name="Gender" EntityType="Self.Gender" />
-          <EntitySet Name="MedicalCard" EntityType="Self.MedicalCard" />
-          <EntitySet Name="Patient" EntityType="Self.Patient" />
-          <EntitySet Name="Polis" EntityType="Self.Polis" />
-          <EntitySet Name="RecipeList" EntityType="Self.RecipeList" />
-          <EntitySet Name="RecordList" EntityType="Self.RecordList" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="DiseaseHistories" EntityType="Self.DiseaseHistory" />
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
+          <EntitySet Name="MedicalCards" EntityType="Self.MedicalCard" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Polis" EntityType="Self.Poli" />
+          <EntitySet Name="RecipeLists" EntityType="Self.RecipeList" />
+          <EntitySet Name="RecordLists" EntityType="Self.RecordList" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_MedicalCard_DiseaseHistory" Association="Self.FK_MedicalCard_DiseaseHistory">
-            <End Role="DiseaseHistory" EntitySet="DiseaseHistory" />
-            <End Role="MedicalCard" EntitySet="MedicalCard" />
+            <End Role="DiseaseHistory" EntitySet="DiseaseHistories" />
+            <End Role="MedicalCard" EntitySet="MedicalCards" />
           </AssociationSet>
           <AssociationSet Name="FK_Patient_Gender" Association="Self.FK_Patient_Gender">
-            <End Role="Gender" EntitySet="Gender" />
-            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
-            <End Role="Gender" EntitySet="Gender" />
-            <End Role="User" EntitySet="User" />
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_MedicalCard_RecipeList" Association="Self.FK_MedicalCard_RecipeList">
-            <End Role="RecipeList" EntitySet="RecipeList" />
-            <End Role="MedicalCard" EntitySet="MedicalCard" />
+            <End Role="RecipeList" EntitySet="RecipeLists" />
+            <End Role="MedicalCard" EntitySet="MedicalCards" />
           </AssociationSet>
           <AssociationSet Name="FK_Patient_MedicalCard" Association="Self.FK_Patient_MedicalCard">
-            <End Role="MedicalCard" EntitySet="MedicalCard" />
-            <End Role="Patient" EntitySet="Patient" />
+            <End Role="MedicalCard" EntitySet="MedicalCards" />
+            <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
           <AssociationSet Name="FK_Patient_Polis" Association="Self.FK_Patient_Polis">
             <End Role="Polis" EntitySet="Polis" />
-            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
           <AssociationSet Name="FK_RecordList_Patient" Association="Self.FK_RecordList_Patient">
-            <End Role="Patient" EntitySet="Patient" />
-            <End Role="RecordList" EntitySet="RecordList" />
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="RecordList" EntitySet="RecordLists" />
           </AssociationSet>
           <AssociationSet Name="FK_RecordList_User" Association="Self.FK_RecordList_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="RecordList" EntitySet="RecordList" />
+            <End Role="User" EntitySet="Users" />
+            <End Role="RecordList" EntitySet="RecordLists" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -539,8 +539,8 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище PodkopaevPolyclinicModelContainer" CdmEntityContainer="PodkopaevPolyclinicEntities1">
-          <EntitySetMapping Name="DiseaseHistory">
+        <EntityContainerMapping StorageEntityContainer="PodkopaevPolyclinicModelStoreContainer" CdmEntityContainer="PodkopaevPolyclinicEntities1">
+          <EntitySetMapping Name="DiseaseHistories">
             <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.DiseaseHistory">
               <MappingFragment StoreEntitySet="DiseaseHistory">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -551,7 +551,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Gender">
+          <EntitySetMapping Name="Genders">
             <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -559,7 +559,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MedicalCard">
+          <EntitySetMapping Name="MedicalCards">
             <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.MedicalCard">
               <MappingFragment StoreEntitySet="MedicalCard">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -568,7 +568,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Patient">
+          <EntitySetMapping Name="Patients">
             <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.Patient">
               <MappingFragment StoreEntitySet="Patient">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -583,7 +583,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Polis">
-            <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.Polis">
+            <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.Poli">
               <MappingFragment StoreEntitySet="Polis">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="InsuranceCompanyName" ColumnName="InsuranceCompanyName" />
@@ -591,7 +591,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RecipeList">
+          <EntitySetMapping Name="RecipeLists">
             <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.RecipeList">
               <MappingFragment StoreEntitySet="RecipeList">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -601,7 +601,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RecordList">
+          <EntitySetMapping Name="RecordLists">
             <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.RecordList">
               <MappingFragment StoreEntitySet="RecordList">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -611,7 +611,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Role">
+          <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -620,7 +620,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.sysdiagrams">
+            <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -630,7 +630,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="User">
+          <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -661,10 +661,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

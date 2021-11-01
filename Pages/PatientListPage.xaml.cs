@@ -28,7 +28,7 @@ namespace PodkopaevApp.Pages
         public PatientListPage()
         {
             InitializeComponent();
-            list = new ObservableCollection<Patient>(DB.Patient.ToList());
+            list = new ObservableCollection<Patient>(DB.Patients.ToList());
             patientsLV.ItemsSource = list;
         }
     }

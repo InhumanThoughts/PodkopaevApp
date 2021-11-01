@@ -91,7 +91,7 @@
     <Compile Include="Helper\Patient.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Helper\Polis.cs">
+    <Compile Include="Helper\Poli.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Helper\RecipeList.cs">
@@ -103,7 +103,7 @@
     <Compile Include="Helper\Role.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Helper\sysdiagrams.cs">
+    <Compile Include="Helper\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Helper\User.cs">

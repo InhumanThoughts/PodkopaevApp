@@ -34,7 +34,7 @@ namespace PodkopaevApp.Pages
 
         private void enterBtn_Click(object sender, RoutedEventArgs e)
         {
-            User user = DB.User.Where(u => u.login == loginTB.Text && u.password == passTB.Text).FirstOrDefault();
+            User user = DB.Users.Where(u => u.login == loginTB.Text && u.password == passTB.Text).FirstOrDefault();
             if (user == null)
                 return;
 
