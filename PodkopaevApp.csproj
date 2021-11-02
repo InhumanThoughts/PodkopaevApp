@@ -91,6 +91,9 @@
     <Compile Include="Helper\Patient.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helper\PatientView.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Helper\Poli.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -109,7 +112,10 @@
     <Compile Include="Helper\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DoctorListPage.xaml.cs">
+    <Compile Include="Pages\Admin\AddEditPatientWindow.xaml.cs">
+      <DependentUpon>AddEditPatientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\DoctorListPage.xaml.cs">
       <DependentUpon>DoctorListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
@@ -118,13 +124,13 @@
     <Compile Include="Pages\PatientAuth.xaml.cs">
       <DependentUpon>PatientAuth.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PatientListPage.xaml.cs">
+    <Compile Include="Pages\Admin\PatientListPage.xaml.cs">
       <DependentUpon>PatientListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StaffAuth.xaml.cs">
       <DependentUpon>StaffAuth.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AdminPage.xaml.cs">
+    <Compile Include="Pages\Admin\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -139,7 +145,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\DoctorListPage.xaml">
+    <Page Include="Pages\Admin\AddEditPatientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\DoctorListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,7 +161,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PatientListPage.xaml">
+    <Page Include="Pages\Admin\PatientListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,7 +169,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AdminPage.xaml">
+    <Page Include="Pages\Admin\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -35,5 +35,6 @@ namespace PodkopaevApp.Helper
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<PatientView> PatientViews { get; set; }
     }
 }

@@ -20,7 +20,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MedicalCard">
           <Key>
@@ -42,6 +42,7 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Patronimic" Type="nvarchar" MaxLength="50" />
           <Property Name="BirthDay" Type="date" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Polis">
           <Key>
@@ -101,6 +102,23 @@
           <Property Name="GenderId" Type="int" />
           <Property Name="login" Type="nvarchar(max)" />
           <Property Name="password" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PodkopaevPolyclinic.dbo.PatientView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PatientView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="MedicalCardId" Type="int" />
+          <Property Name="PolisId" Type="int" />
+          <Property Name="GenderId" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronimic" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDay" Type="date" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_MedicalCard_DiseaseHistory">
           <End Role="DiseaseHistory" Type="Self.DiseaseHistory" Multiplicity="0..1" />
@@ -221,6 +239,20 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientView" EntityType="Self.PatientView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PatientView].[Id] AS [Id], 
+    [PatientView].[MedicalCardId] AS [MedicalCardId], 
+    [PatientView].[PolisId] AS [PolisId], 
+    [PatientView].[GenderId] AS [GenderId], 
+    [PatientView].[FirstName] AS [FirstName], 
+    [PatientView].[LastName] AS [LastName], 
+    [PatientView].[Patronimic] AS [Patronimic], 
+    [PatientView].[BirthDay] AS [BirthDay], 
+    [PatientView].[IsDeleted] AS [IsDeleted], 
+    [PatientView].[Gender] AS [Gender]
+    FROM [dbo].[PatientView] AS [PatientView]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_MedicalCard_DiseaseHistory" Association="Self.FK_MedicalCard_DiseaseHistory">
             <End Role="DiseaseHistory" EntitySet="DiseaseHistory" />
             <End Role="MedicalCard" EntitySet="MedicalCard" />
@@ -279,7 +311,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Patients" Relationship="Self.FK_Patient_Gender" FromRole="Gender" ToRole="Patient" />
           <NavigationProperty Name="Users" Relationship="Self.FK_User_Gender" FromRole="Gender" ToRole="User" />
         </EntityType>
@@ -306,6 +338,7 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BirthDay" Type="DateTime" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Patient_Gender" FromRole="Patient" ToRole="Gender" />
           <NavigationProperty Name="MedicalCard" Relationship="Self.FK_Patient_MedicalCard" FromRole="Patient" ToRole="MedicalCard" />
           <NavigationProperty Name="Poli" Relationship="Self.FK_Patient_Polis" FromRole="Patient" ToRole="Polis" />
@@ -377,6 +410,21 @@
           <NavigationProperty Name="Gender" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
           <NavigationProperty Name="RecordLists" Relationship="Self.FK_RecordList_User" FromRole="User" ToRole="RecordList" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="PatientView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="MedicalCardId" Type="Int32" />
+          <Property Name="PolisId" Type="Int32" />
+          <Property Name="GenderId" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_MedicalCard_DiseaseHistory">
           <End Role="DiseaseHistory" Type="Self.DiseaseHistory" Multiplicity="0..1" />
@@ -497,6 +545,7 @@
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="PatientViews" EntityType="Self.PatientView" />
           <AssociationSet Name="FK_MedicalCard_DiseaseHistory" Association="Self.FK_MedicalCard_DiseaseHistory">
             <End Role="DiseaseHistory" EntitySet="DiseaseHistories" />
             <End Role="MedicalCard" EntitySet="MedicalCards" />
@@ -555,7 +604,7 @@
             <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="gender1" ColumnName="gender" />
+                <ScalarProperty Name="Gender1" ColumnName="Gender" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -579,6 +628,7 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Patronimic" ColumnName="Patronimic" />
                 <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -644,6 +694,22 @@
                 <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientViews">
+            <EntityTypeMapping TypeName="PodkopaevPolyclinicModel.PatientView">
+              <MappingFragment StoreEntitySet="PatientView">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MedicalCardId" ColumnName="MedicalCardId" />
+                <ScalarProperty Name="PolisId" ColumnName="PolisId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronimic" ColumnName="Patronimic" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

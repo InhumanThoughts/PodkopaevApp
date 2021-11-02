@@ -9,18 +9,28 @@
       Title="PatientListPage">
 
     <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="70"/>
+		</Grid.RowDefinitions>
+		
         <ListView x:Name="patientsLV">
             <ListView.View>
                 <GridView >
                     <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}" />
                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}" />
-                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronimic}" />
-                    <GridViewColumn Header="Пол" DisplayMemberBinding="{Binding Gender}" />
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}" />
+                    <GridViewColumn Header="Пол" DisplayMemberBinding="{Binding GenderId}" />
                     <GridViewColumn Header="День рождения" DisplayMemberBinding="{Binding BirthDay}" />
                     <GridViewColumn Header="Мед. карта" DisplayMemberBinding="{Binding MedicalCard}" />
                     <GridViewColumn Header="Полис" DisplayMemberBinding="{Binding Polis}" />
                 </GridView>
             </ListView.View>
         </ListView>
-    </Grid>
+
+		<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+			<Button x:Name="btnEditPatient" Content="Редактировать пациента" Style="{DynamicResource ButtonStyleStaff}" Click="btnEditPatient_Click"/>
+			<Button x:Name="btnAddPatient" Content="Добавить пациента" Style="{DynamicResource ButtonStyleStaff}" Click="btnAddPatient_Click"/>
+		</StackPanel>
+	</Grid>
 </Page>

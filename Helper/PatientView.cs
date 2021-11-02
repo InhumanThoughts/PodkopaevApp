@@ -12,14 +12,8 @@ namespace PodkopaevApp.Helper
     using System;
     using System.Collections.Generic;
     
-    public partial class Patient
+    public partial class PatientView
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Patient()
-        {
-            this.RecordLists = new HashSet<RecordList>();
-        }
-    
         public int Id { get; set; }
         public Nullable<int> MedicalCardId { get; set; }
         public Nullable<int> PolisId { get; set; }
@@ -29,11 +23,6 @@ namespace PodkopaevApp.Helper
         public string Patronimic { get; set; }
         public Nullable<System.DateTime> BirthDay { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
-    
-        public virtual Gender Gender { get; set; }
-        public virtual MedicalCard MedicalCard { get; set; }
-        public virtual Poli Poli { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RecordList> RecordLists { get; set; }
+        public string Gender { get; set; }
     }
 }
